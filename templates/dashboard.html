@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat - Sahara AI</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body class="dashboard-body">
+    <!-- Dashboard Header -->
+    <header class="dashboard-header">
+        <div class="header-container">
+            <div class="header-left">
+                <a href="/" class="brand-link">
+                    <i class="fas fa-heart"></i>
+                    <span>Sahara</span>
+                </a>
+            </div>
+            
+            <div class="header-center">
+                <div class="current-mood">
+                    <span class="mood-label">How are you feeling?</span>
+                    <div class="mood-selector">
+                        <button class="mood-btn" data-mood="0" title="Very Sad">😔</button>
+                        <button class="mood-btn" data-mood="1" title="Sad">😕</button>
+                        <button class="mood-btn active" data-mood="2" title="Okay">😐</button>
+                        <button class="mood-btn" data-mood="3" title="Good">🙂</button>
+                        <button class="mood-btn" data-mood="4" title="Very Happy">😊</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="header-right">
+                <button class="btn btn-icon" onclick="clearChat()" title="Clear Chat">
+                    <i class="fas fa-trash"></i>
+                </button>
+                <button class="btn btn-icon" onclick="toggleDarkMode()" title="Toggle Theme">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Dashboard -->
+    <main class="dashboard-main">
+        <div class="dashboard-container">
+            <!-- Chat Section -->
+            <div class="chat-section">
+                <div class="chat-container">
+                    <!-- Chat Header -->
+                    <div class="chat-header">
+                        <div class="bot-info">
+                            <div class="bot-avatar">
+                                <i class="fas fa-heart"></i>
+                                <div class="online-indicator"></div>
+                            </div>
+                            <div class="bot-details">
+                                <h3>Sahara AI</h3>
+                                <p>Your mental wellness companion</p>
+                            </div>
+                        </div>
+                        <div class="chat-actions">
+                            <button class="btn btn-sm" onclick="showResources()">
+                                <i class="fas fa-book"></i>
+                                Resources
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Chat Messages -->
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="welcome-message">
+                            <div class="welcome-content">
+                                <div class="welcome-icon">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                                <h3>Welcome to Sahara</h3>
+                                <p>I'm your AI mental wellness companion. This is a safe, confidential space where you can share anything that's on your mind.</p>
+                                <div class="welcome-suggestions">
+                                    <button class="suggestion-btn" onclick="sendSuggestion('I am feeling stressed about my studies')">
+                                        "I'm feeling stressed about studies"
+                                    </button>
+                                    <button class="suggestion-btn" onclick="sendSuggestion('I feel lonely and isolated')">
+                                        "I feel lonely and isolated"
+                                    </button>
+                                    <button class="suggestion-btn" onclick="sendSuggestion('Having problems with my family')">
+                                        "Having problems with family"
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Typing Indicator -->
+                    <div class="typing-indicator" id="typingIndicator" style="display: none;">
+                        <div class="message bot-message">
+                            <div class="message-content">
+                                <div class="typing-animation">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chat Input -->
+                    <div class="chat-input">
+                        <div class="input-container">
+                            <textarea id="messageInput" 
+                                     placeholder="Type your message here... Feel free to express yourself"
+                                     rows="1"
+                                     maxlength="1000"></textarea>
+                            <button class="send-btn" onclick="sendMessage()" id="sendBtn">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                        <div class="input-footer">
+                            <span class="privacy-notice">
+                                <i class="fas fa-lock"></i>
+                                Everything is confidential and anonymous
+                            </span>
+                            <span class="char-counter" id="charCounter">0/1000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="sidebar-section">
+                    <h4>Quick Resources</h4>
+                    <div class="resource-links">
+                        <a href="#" class="resource-link" onclick="loadResource('breathing')">
+                            <i class="fas fa-leaf"></i>
+                            <span>Breathing Exercises</span>
+                        </a>
+                        <a href="#" class="resource-link" onclick="loadResource('meditation')">
+                            <i class="fas fa-om"></i>
+                            <span>5-Min Meditation</span>
+                        </a>
+                        <a href="#" class="resource-link" onclick="loadResource('study-tips')">
+                            <i class="fas fa-book"></i>
+                            <span>Study Techniques</span>
+                        </a>
+                        <a href="#" class="resource-link" onclick="loadResource('mood-boost')">
+                            <i class="fas fa-smile"></i>
+                            <span>Mood Boosters</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <h4>Crisis Support</h4>
+                    <div class="crisis-contacts">
+                        <div class="crisis-contact">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <strong>Vandrevala Foundation</strong>
+                                <a href="tel:+919996780804">+91 99967 80804</a>
+                            </div>
+                        </div>
+                        <div class="crisis-contact">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <strong>SUMITRA</strong>
+                                <a href="tel:01123389090">011-23389090</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <h4>Today's Tip</h4>
+                    <div class="daily-tip">
+                        <div class="tip-content">
+                            <i class="fas fa-lightbulb"></i>
+                            <p>"Take three deep breaths. Remind yourself: I am enough, I am capable, I am worthy of love and support."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Resource Modal -->
+    <div class="modal" id="resourceModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Resource</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="
