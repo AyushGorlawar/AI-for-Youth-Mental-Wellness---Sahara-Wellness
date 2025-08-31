@@ -3,339 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sahara - AI Mental Wellness Companion</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <title>Sahara - Mental Wellness for Indian Youth</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
+    <div class="container">
+        <!-- Navigation -->
+        <nav class="navbar">
             <div class="nav-brand">
-                <i class="fas fa-heart"></i>
-                <span>Sahara</span>
+                <h1>Sahara</h1>
+                <span class="brand-subtitle">सहारा</span>
             </div>
-            <div class="nav-menu">
+            <div class="nav-links">
                 <a href="#features" class="nav-link">Features</a>
                 <a href="#about" class="nav-link">About</a>
-                <a href="#contact" class="nav-link">Support</a>
-                <a href="/dashboard" class="btn btn-primary">Get Started</a>
+                <a href="#contact" class="nav-link">Contact</a>
             </div>
-            <div class="nav-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
+        </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-background">
-            <div class="gradient-bg"></div>
-            <div class="floating-shapes">
-                <div class="shape shape-1"></div>
-                <div class="shape shape-2"></div>
-                <div class="shape shape-3"></div>
-                <div class="shape shape-4"></div>
-            </div>
-        </div>
-        
-        <div class="hero-content">
-            <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
                 <div class="hero-text">
                     <h1 class="hero-title">
-                        Your <span class="gradient-text">AI Mental Wellness</span> Companion
+                        Your Mental Wellness
+                        <span class="gradient-text">Companion</span>
                     </h1>
                     <p class="hero-description">
-                        A safe, anonymous, and confidential space designed specifically for Indian youth. 
-                        Get 24/7 support without stigma or judgment.
+                        A safe, confidential AI-powered platform designed for Indian youth to overcome mental health stigma and find the support they need.
                     </p>
-                    
+                    <div class="hero-buttons">
+                        <a href="/dashboard" class="btn btn-primary">
+                            Start Your Journey
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <button class="btn btn-secondary" onclick="scrollToSection('features')">
+                            Learn More
+                            <i class="fas fa-play"></i>
+                        </button>
+                    </div>
                     <div class="hero-stats">
                         <div class="stat">
-                            <div class="stat-number">24/7</div>
-                            <div class="stat-label">Available</div>
+                            <span class="stat-number">24/7</span>
+                            <span class="stat-label">Available</span>
                         </div>
                         <div class="stat">
-                            <div class="stat-number">100%</div>
-                            <div class="stat-label">Anonymous</div>
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Confidential</span>
                         </div>
                         <div class="stat">
-                            <div class="stat-number">0₹</div>
-                            <div class="stat-label">Cost</div>
+                            <span class="stat-number">0₹</span>
+                            <span class="stat-label">Cost</span>
                         </div>
-                    </div>
-
-                    <div class="hero-actions">
-                        <a href="/dashboard" class="btn btn-primary btn-large">
-                            <i class="fas fa-comments"></i>
-                            Start Chatting
-                        </a>
-                        <a href="#features" class="btn btn-secondary btn-large">
-                            <i class="fas fa-play"></i>
-                            Learn More
-                        </a>
                     </div>
                 </div>
-
                 <div class="hero-visual">
-                    <div class="phone-mockup">
-                        <div class="phone-screen">
-                            <div class="chat-preview">
-                                <div class="chat-header-preview">
-                                    <div class="bot-avatar-preview">
-                                        <i class="fas fa-heart"></i>
-                                    </div>
-                                    <div>
-                                        <div class="bot-name">Sahara AI</div>
-                                        <div class="bot-status">Online</div>
-                                    </div>
-                                </div>
-                                <div class="chat-messages-preview">
-                                    <div class="message-preview bot">
-                                        <div class="message-bubble">
-                                            Hello! I'm here to listen and support you. How are you feeling today?
-                                        </div>
-                                    </div>
-                                    <div class="message-preview user">
-                                        <div class="message-bubble">
-                                            I've been feeling really stressed about my exams...
-                                        </div>
-                                    </div>
-                                    <div class="message-preview bot">
-                                        <div class="message-bubble">
-                                            I understand. Exam stress is completely normal. Let's work through this together.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="typing-preview">
-                                    <div class="typing-dots">
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="floating-card card-1">
+                        <i class="fas fa-heart"></i>
+                        <span>Emotional Support</span>
                     </div>
+                    <div class="floating-card card-2">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Safe Space</span>
+                    </div>
+                    <div class="floating-card card-3">
+                        <i class="fas fa-users"></i>
+                        <span>Community</span>
+                    </div>
+                    <div class="hero-circle"></div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Features Section -->
-    <section id="features" class="features">
-        <div class="container">
+        <!-- Features Section -->
+        <section id="features" class="features">
             <div class="section-header">
-                <h2>Why Choose Sahara?</h2>
-                <p>Designed specifically for Indian youth facing mental health challenges</p>
+                <h2 class="section-title">Why Choose Sahara?</h2>
+                <p class="section-subtitle">Designed specifically for Indian youth with cultural sensitivity and modern technology</p>
             </div>
-
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-shield-alt"></i>
+                        <i class="fas fa-robot"></i>
                     </div>
-                    <h3>100% Anonymous</h3>
-                    <p>No registration required. Your privacy is our top priority. Chat without revealing your identity.</p>
+                    <h3>AI-Powered Support</h3>
+                    <p>Smart conversations that understand your emotions and provide personalized guidance using advanced AI technology.</p>
                 </div>
-
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-brain"></i>
+                        <i class="fas fa-language"></i>
                     </div>
-                    <h3>AI-Powered Understanding</h3>
-                    <p>Advanced AI that understands context, emotions, and provides culturally sensitive responses.</p>
+                    <h3>Bilingual Interface</h3>
+                    <p>Communicate in English, Hindi, or Hinglish - whatever feels most comfortable for expressing your thoughts.</p>
                 </div>
-
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>Complete Privacy</h3>
+                    <p>No data stored, no tracking, complete anonymity. Your conversations remain private and secure.</p>
+                </div>
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-clock"></i>
                     </div>
-                    <h3>Always Available</h3>
-                    <p>24/7 support whenever you need someone to talk to. No appointments, no waiting.</p>
+                    <h3>24/7 Availability</h3>
+                    <p>Get support whenever you need it - whether it's 3 AM before an exam or during a family crisis.</p>
                 </div>
-
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-heart"></i>
                     </div>
-                    <h3>Empathetic Response</h3>
-                    <p>Responses designed to be understanding, non-judgmental, and supportive of your journey.</p>
+                    <h3>Culturally Aware</h3>
+                    <p>Understands Indian family dynamics, academic pressure, and social contexts specific to Indian youth.</p>
                 </div>
-
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-graduation-cap"></i>
                     </div>
                     <h3>Student-Focused</h3>
-                    <p>Specifically designed for academic stress, peer pressure, and challenges faced by Indian students.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Crisis Support</h3>
-                    <p>Immediate connection to professional helplines when you need urgent support.</p>
+                    <p>Specialized support for exam stress, career pressure, academic anxiety, and student life challenges.</p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Quick Start Section -->
-    <section class="quick-start">
-        <div class="container">
-            <div class="quick-start-content">
-                <h2>Need Support Right Now?</h2>
-                <p>Click on what describes how you're feeling</p>
-                
-                <div class="quick-buttons">
-                    <button class="quick-btn" onclick="quickStart('I am feeling very stressed and overwhelmed')">
-                        <i class="fas fa-brain"></i>
-                        <span>Feeling Stressed</span>
-                    </button>
-                    <button class="quick-btn" onclick="quickStart('I have severe exam anxiety and fear of failure')">
-                        <i class="fas fa-graduation-cap"></i>
-                        <span>Exam Anxiety</span>
-                    </button>
-                    <button class="quick-btn" onclick="quickStart('I feel very lonely and isolated')">
-                        <i class="fas fa-heart-broken"></i>
-                        <span>Feeling Lonely</span>
-                    </button>
-                    <button class="quick-btn" onclick="quickStart('Having problems with my family')">
-                        <i class="fas fa-home"></i>
-                        <span>Family Issues</span>
-                    </button>
+        <!-- How It Works -->
+        <section class="how-it-works">
+            <div class="section-header">
+                <h2 class="section-title">How It Works</h2>
+                <p class="section-subtitle">Simple steps to start your mental wellness journey</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Start Chatting</h3>
+                    <p>No registration needed. Just click and start talking to your AI companion.</p>
                 </div>
-
-                <div class="crisis-notice">
-                    <div class="crisis-box">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        <div>
-                            <strong>Crisis Support:</strong>
-                            If you're having thoughts of self-harm, please call 
-                            <a href="tel:+919996780804"><strong>+91 99967 80804</strong></a> immediately.
-                        </div>
-                    </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Share Your Feelings</h3>
+                    <p>Express your thoughts in your preferred language. Sahara listens without judgment.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Get Personalized Support</h3>
+                    <p>Receive empathetic responses, coping strategies, and resources tailored to your needs.</p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2>Breaking Mental Health Stigma in India</h2>
-                    <p>
-                        Mental health remains a significant taboo in Indian society, creating barriers for young 
-                        adults and students seeking support. With intense academic and social pressures, 
-                        youth often lack accessible, non-judgmental outlets for their mental health concerns.
-                    </p>
-                    <p>
-                        Sahara bridges this gap by providing an AI-powered, culturally sensitive platform 
-                        that offers immediate support without the fear of stigma or judgment.
-                    </p>
-                    
-                    <div class="about-stats">
-                        <div class="about-stat">
-                            <div class="about-stat-number">70%</div>
-                            <div class="about-stat-text">of Indian youth experience mental health issues</div>
-                        </div>
-                        <div class="about-stat">
-                            <div class="about-stat-number">90%</div>
-                            <div class="about-stat-text">don't seek help due to stigma</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="about-visual">
-                    <div class="mental-health-graphic">
-                        <div class="brain-illustration">
-                            <i class="fas fa-brain"></i>
-                            <div class="pulse-ring"></div>
-                            <div class="pulse-ring pulse-ring-2"></div>
-                        </div>
-                    </div>
-                </div>
+        <!-- CTA Section -->
+        <section class="cta">
+            <div class="cta-content">
+                <h2>Ready to Start Your Wellness Journey?</h2>
+                <p>Join thousands of Indian students who have found support and guidance through Sahara.</p>
+                <a href="/dashboard" class="btn btn-primary btn-large">
+                    Talk to Sahara Now
+                    <i class="fas fa-comments"></i>
+                </a>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
+        <!-- Footer -->
+        <footer class="footer">
             <div class="footer-content">
-                <div class="footer-brand">
-                    <div class="footer-logo">
-                        <i class="fas fa-heart"></i>
-                        <span>Sahara</span>
-                    </div>
-                    <p>AI-powered mental wellness companion for Indian youth</p>
+                <div class="footer-section">
+                    <h3>Sahara</h3>
+                    <p>Mental wellness support for Indian youth. Always free, always confidential.</p>
                 </div>
-                
-                <div class="footer-links">
-                    <div class="footer-section">
-                        <h4>Support</h4>
-                        <a href="#crisis">Crisis Helpline</a>
-                        <a href="#resources">Resources</a>
-                        <a href="#faq">FAQ</a>
-                    </div>
-                    <div class="footer-section">
-                        <h4>Privacy</h4>
-                        <a href="#privacy">Privacy Policy</a>
-                        <a href="#terms">Terms of Service</a>
-                        <a href="#security">Security</a>
-                    </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="#features">Features</a>
+                    <a href="/dashboard">Get Support</a>
+                    <a href="#about">About Us</a>
                 </div>
-                
-                <div class="footer-emergency">
-                    <div class="emergency-box">
-                        <i class="fas fa-phone"></i>
-                        <div>
-                            <strong>Emergency Support</strong>
-                            <div>+91 99967 80804 (24/7)</div>
-                        </div>
-                    </div>
+                <div class="footer-section">
+                    <h4>Crisis Resources</h4>
+                    <a href="tel:9152987821">Helpline: 91529-87821</a>
+                    <a href="mailto:help@sahara.com">help@sahara.com</a>
                 </div>
             </div>
-            
             <div class="footer-bottom">
-                <p>&copy; 2024 Sahara. Made with ❤️ for Indian youth mental wellness.</p>
+                <p>&copy;2025 MindWell AI. Made by Ayush and Rishav. Empowering youth mental wellness with compassion and technology.</p>
             </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
 
     <script>
-        // Mobile menu toggle
-        document.querySelector('.nav-toggle').addEventListener('click', function() {
-            document.querySelector('.nav-menu').classList.toggle('active');
-        });
-
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ 
+                behavior: 'smooth' 
             });
-        });
-
-        // Quick start functionality
-        function quickStart(message) {
-            localStorage.setItem('quickMessage', message);
-            window.location.href = '/dashboard';
         }
 
-        // Intersection Observer for animations
+        // Add scroll animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -344,26 +207,21 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-in');
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
                 }
             });
         }, observerOptions);
 
-        // Observe elements for animation
-        document.querySelectorAll('.feature-card, .about-stat, .quick-btn').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Floating shapes animation
-        function animateShapes() {
-            const shapes = document.querySelectorAll('.shape');
-            shapes.forEach((shape, index) => {
-                const delay = index * 0.5;
-                shape.style.animationDelay = `${delay}s`;
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.feature-card, .step');
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
             });
-        }
-
-        animateShapes();
+        });
     </script>
 </body>
 </html>
