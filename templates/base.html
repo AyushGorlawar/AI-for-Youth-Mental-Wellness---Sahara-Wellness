@@ -1,0 +1,481 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Sahara - Mental Wellness Companion{% endblock %}</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('home') }}">
+                <i class="fas fa-heart text-pink"></i> सहारा
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('home') }}"><i class="fas fa-home"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('chat') }}"><i class="fas fa-comments"></i> Chat</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('resources') }}"><i class="fas fa-book"></i> Resources</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4 mt-5">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-md-12">
+                    <p><i class="fas fa-shield-alt text-success"></i> 100% Confidential & Anonymous</p>
+                    <p class="text-muted">Crisis Helpline: <strong>+91 99967 80804</strong> (24/7)</p>
+                    <small>&copy; 2024 Sahara - AI Mental Wellness Companion</small>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>
+
+<!-- templates/index.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <div class="welcome-card">
+                    <div class="heart-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h1 class="display-4 mb-4">Welcome to सहारा</h1>
+                    <p class="lead mb-4">Your AI-powered mental wellness companion</p>
+                    <p class="text-muted mb-4">A safe, anonymous, and confidential space to share your thoughts and feelings</p>
+                    
+                    <!-- Mood Selector -->
+                    <div class="mood-selector mb-4">
+                        <h5>How are you feeling today?</h5>
+                        <div class="mood-options">
+                            <button class="mood-btn" data-mood="0" title="Very Sad">😔</button>
+                            <button class="mood-btn" data-mood="1" title="Sad">😕</button>
+                            <button class="mood-btn active" data-mood="2" title="Okay">😐</button>
+                            <button class="mood-btn" data-mood="3" title="Good">🙂</button>
+                            <button class="mood-btn" data-mood="4" title="Very Happy">😊</button>
+                        </div>
+                        <small id="mood-label" class="text-muted">Okay</small>
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-block">
+                        <a href="{{ url_for('chat') }}" class="btn btn-primary btn-lg">
+                            <i class="fas fa-comments"></i> Start Chatting
+                        </a>
+                        <a href="{{ url_for('resources') }}" class="btn btn-outline-primary btn-lg">
+                            <i class="fas fa-book"></i> Explore Resources
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Features Section -->
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-4 text-center mb-4">
+            <div class="feature-card">
+                <i class="fas fa-user-shield fa-3x text-primary mb-3"></i>
+                <h4>100% Anonymous</h4>
+                <p>No registration required. Your privacy is our priority.</p>
+            </div>
+        </div>
+        <div class="col-md-4 text-center mb-4">
+            <div class="feature-card">
+                <i class="fas fa-heart fa-3x text-danger mb-3"></i>
+                <h4>Empathetic AI</h4>
+                <p>Powered by advanced AI that understands and responds with care.</p>
+            </div>
+        </div>
+        <div class="col-md-4 text-center mb-4">
+            <div class="feature-card">
+                <i class="fas fa-clock fa-3x text-success mb-3"></i>
+                <h4>24/7 Available</h4>
+                <p>Always here when you need someone to talk to.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Help Section -->
+<div class="bg-light py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h3 class="text-center mb-4">Need Immediate Support?</h3>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="quick-help-card" onclick="startQuickChat('I am feeling very stressed')">
+                            <i class="fas fa-brain text-warning"></i>
+                            <span>"I'm feeling very stressed"</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="quick-help-card" onclick="startQuickChat('I have exam anxiety')">
+                            <i class="fas fa-graduation-cap text-info"></i>
+                            <span>"I have exam anxiety"</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="quick-help-card" onclick="startQuickChat('I feel lonely')">
+                            <i class="fas fa-user text-primary"></i>
+                            <span>"I feel lonely"</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="quick-help-card" onclick="startQuickChat('Family problems')">
+                            <i class="fas fa-home text-success"></i>
+                            <span>"Family problems"</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Mood selector functionality
+document.querySelectorAll('.mood-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        
+        const mood = this.dataset.mood;
+        const labels = ['Very Sad', 'Sad', 'Okay', 'Good', 'Very Happy'];
+        document.getElementById('mood-label').textContent = labels[mood];
+        
+        // Send mood to server
+        fetch('/api/mood', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({mood: parseInt(mood)})
+        });
+    });
+});
+
+function startQuickChat(message) {
+    localStorage.setItem('quickMessage', message);
+    window.location.href = '/chat';
+}
+</script>
+{% endblock %}
+
+<!-- templates/chat.html -->
+{% extends "base.html" %}
+
+{% block title %}Chat - Sahara{% endblock %}
+
+{% block content %}
+<div class="chat-container">
+    <div class="container-fluid h-100">
+        <div class="row h-100">
+            <div class="col-12">
+                <div class="chat-box">
+                    <!-- Chat Header -->
+                    <div class="chat-header">
+                        <div class="d-flex align-items-center">
+                            <div class="bot-avatar">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <div class="ms-3">
+                                <h5 class="mb-0">Sahara AI</h5>
+                                <small class="text-success">
+                                    <i class="fas fa-circle"></i> Online
+                                </small>
+                            </div>
+                        </div>
+                        <div class="chat-options">
+                            <button class="btn btn-sm btn-outline-secondary" onclick="clearChat()">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Chat Messages -->
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="message bot-message">
+                            <div class="message-content">
+                                <p>Hello! I'm Sahara, your AI mental wellness companion. I'm here to listen and support you. Feel free to share whatever is on your mind - this is a safe, confidential space.</p>
+                                <small class="message-time">Just now</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Typing Indicator -->
+                    <div class="typing-indicator" id="typingIndicator" style="display: none;">
+                        <div class="message bot-message">
+                            <div class="message-content">
+                                <div class="typing-dots">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chat Input -->
+                    <div class="chat-input">
+                        <div class="input-group">
+                            <input type="text" 
+                                   class="form-control" 
+                                   id="messageInput" 
+                                   placeholder="Type your message here..."
+                                   maxlength="500">
+                            <button class="btn btn-primary" type="button" onclick="sendMessage()">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                        <small class="text-muted">Press Enter to send • Everything is confidential</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+{% endblock %}
+
+<!-- templates/resources.html -->
+{% extends "base.html" %}
+
+{% block title %}Resources - Sahara{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="text-center mb-5">Mental Health Resources</h2>
+        </div>
+    </div>
+
+    <!-- Crisis Support -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="alert alert-danger" role="alert">
+                <h4 class="alert-heading"><i class="fas fa-exclamation-triangle"></i> Crisis Support</h4>
+                <p>If you're having thoughts of self-harm or suicide, please reach out immediately:</p>
+                <hr>
+                <div class="row">
+                    <div class="col-md-6">
+                        <strong>Vandrevala Foundation:</strong> +91 99967 80804
+                    </div>
+                    <div class="col-md-6">
+                        <strong>SUMITRA:</strong> 011-23389090
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Resource Categories -->
+    <div class="row">
+        <!-- Stress Management -->
+        <div class="col-md-6 mb-4">
+            <div class="resource-card">
+                <div class="card-header bg-primary text-white">
+                    <h5><i class="fas fa-brain"></i> Stress Management</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-leaf text-success"></i> 4-7-8 Breathing Technique</li>
+                        <li><i class="fas fa-leaf text-success"></i> Progressive Muscle Relaxation</li>
+                        <li><i class="fas fa-leaf text-success"></i> Mindfulness Meditation</li>
+                        <li><i class="fas fa-leaf text-success"></i> Time Management Tips</li>
+                    </ul>
+                    <button class="btn btn-primary btn-sm" onclick="loadResources('stress_management')">
+                        Learn More
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Study Help -->
+        <div class="col-md-6 mb-4">
+            <div class="resource-card">
+                <div class="card-header bg-info text-white">
+                    <h5><i class="fas fa-graduation-cap"></i> Study & Exam Help</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-clock text-info"></i> Pomodoro Technique</li>
+                        <li><i class="fas fa-clock text-info"></i> Active Recall Methods</li>
+                        <li><i class="fas fa-clock text-info"></i> Exam Anxiety Relief</li>
+                        <li><i class="fas fa-clock text-info"></i> Effective Study Schedules</li>
+                    </ul>
+                    <button class="btn btn-info btn-sm" onclick="loadResources('study_help')">
+                        Learn More
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Self Care -->
+        <div class="col-md-6 mb-4">
+            <div class="resource-card">
+                <div class="card-header bg-success text-white">
+                    <h5><i class="fas fa-heart"></i> Self-Care</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-moon text-primary"></i> Sleep Hygiene</li>
+                        <li><i class="fas fa-dumbbell text-danger"></i> Physical Exercise</li>
+                        <li><i class="fas fa-utensils text-warning"></i> Healthy Eating</li>
+                        <li><i class="fas fa-smile text-success"></i> Mood Tracking</li>
+                    </ul>
+                    <button class="btn btn-success btn-sm" onclick="loadResources('self_care')">
+                        Learn More
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Social Support -->
+        <div class="col-md-6 mb-4">
+            <div class="resource-card">
+                <div class="card-header bg-warning text-dark">
+                    <h5><i class="fas fa-users"></i> Building Connections</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-handshake text-primary"></i> Making Friends</li>
+                        <li><i class="fas fa-comments text-info"></i> Communication Skills</li>
+                        <li><i class="fas fa-home text-success"></i> Family Relationships</li>
+                        <li><i class="fas fa-heart text-danger"></i> Dealing with Loneliness</li>
+                    </ul>
+                    <button class="btn btn-warning btn-sm" onclick="loadResources('social_support')">
+                        Learn More
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Professional Help -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="card bg-light">
+                <div class="card-body text-center">
+                    <h4><i class="fas fa-user-md text-primary"></i> When to Seek Professional Help</h4>
+                    <p class="mb-4">Sometimes talking to a mental health professional can provide additional support. Consider reaching out if you experience:</p>
+                    <div class="row">
+                        <div class="col-md-3 mb-2">
+                            <small>• Persistent sadness or anxiety</small>
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <small>• Sleep problems for weeks</small>
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <small>• Difficulty with daily activities</small>
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <small>• Thoughts of self-harm</small>
+                        </div>
+                    </div>
+                    <p class="text-muted mt-3">
+                        <strong>Remember:</strong> Seeking help is a sign of strength, not weakness.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Resource Modal -->
+<div class="modal fade" id="resourceModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="resourceModalTitle">Resource Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="resourceModalBody">
+                Loading...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function loadResources(category) {
+    const modal = new bootstrap.Modal(document.getElementById('resourceModal'));
+    document.getElementById('resourceModalTitle').textContent = 'Loading Resources...';
+    document.getElementById('resourceModalBody').innerHTML = 'Loading...';
+    
+    fetch(`/api/resources/${category}`)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('resourceModalTitle').textContent = category.replace('_', ' ').toUpperCase();
+            let content = '<div class="list-group">';
+            data.forEach(item => {
+                content += `
+                    <div class="list-group-item">
+                        <h6 class="mb-1">${item.name}</h6>
+                        <p class="mb-1">${item.description}</p>
+                        ${item.contact ? `<small class="text-muted">Contact: ${item.contact}</small>` : ''}
+                        ${item.available ? `<small class="text-success"> • Available: ${item.available}</small>` : ''}
+                    </div>
+                `;
+            });
+            content += '</div>';
+            document.getElementById('resourceModalBody').innerHTML = content;
+        })
+        .catch(error => {
+            document.getElementById('resourceModalBody').innerHTML = 'Sorry, unable to load resources at this time.';
+        });
+    
+    modal.show();
+}
+</script>
+{% endblock %}
